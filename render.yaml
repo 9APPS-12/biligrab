@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: biligrab
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --threads 4 --timeout 600
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.4
